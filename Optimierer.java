@@ -1,5 +1,9 @@
 import basis.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Optimierer
 {
@@ -7,6 +11,9 @@ public class Optimierer
     private String lowest;
 
     public BeschriftungsFeld bestLabel;
+    
+    private Map<Integer, int[]> keyPoints = new HashMap<Integer, int[]>();
+    
     public Optimierer(){
         /*labgeher = new Labgeher();
         lowest = labgeher.lowest;
