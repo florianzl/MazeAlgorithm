@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Optimierer
+comment1.params=
+comment1.target=Optimierer()
+comment2.params=lmax\ rmax\ flmax\ frmax
+comment2.target=void\ best(int,\ int,\ int,\ int)
+numComments=3
