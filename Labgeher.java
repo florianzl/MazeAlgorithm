@@ -76,6 +76,10 @@ public class Labgeher extends Fenster implements KnopfLauscher
         lowest = "Basis Swing is a hurensohn";
     }
 
+    
+    public int tesingMySkills(int a, int b){
+        return a*b;
+    }
     //step forward and counter++
     public void step(){
         geher.vor();
