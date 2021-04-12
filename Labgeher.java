@@ -27,8 +27,7 @@ public class Labgeher extends Fenster implements KnopfLauscher
 
     public String lowest;
 
-    public Labgeher()
-    {
+    public Labgeher(){
         this.initGui();
     }
 
@@ -302,7 +301,7 @@ public class Labgeher extends Fenster implements KnopfLauscher
     }
 
     private void imageLoad(){
-        bild.ladeBild("F:\\Lab_Solver\\Mazes\\maze6.png");
+        bild.ladeBild();
         bildorg = new Bild();
         bildorg.setBild(bild.getBild().getClone());
         bild.setzePosition(200,200);

@@ -8,6 +8,7 @@ import java.awt.*;
  * Mehrere Geher mit Länge -> 3
  * Mehrere Geher mit Länge und Vergleich, welches der kürzeste Geher war -> 2
  * Mehrere Geher und den kürzesten (oder alle) Wege noch mal optimieren -> 1
+ *  
  * 
  */
 

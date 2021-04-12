@@ -8,6 +8,7 @@ import java.util.Map;
 public class Optimierer
 {    
     //private geher Geher;
+    //private Labgeher labgeher;
     
     private String lowest;
 
@@ -16,7 +17,7 @@ public class Optimierer
     private Map<Integer, int[]> keyPoints = new HashMap<Integer, int[]>();
     
     public Optimierer(){
-       
+        //labgeher = new Labgeher();
         bestLabel = new BeschriftungsFeld("bester",600,500,100,30);
         bestLabel = new BeschriftungsFeld("Starten um schnellsten Geher zu finden!",190,70,320,30);
         bestLabel.setzeSchriftGroesse(12);
@@ -54,7 +55,7 @@ public class Optimierer
     
     private void woIsTheBest(){
         if (lowest == "Linksgeher");{
-            optimizeLeft();
+            //optimizeLeft();
         }
         if (lowest == "rechtsgeher"){
             //optimizeRight();
@@ -66,39 +67,4 @@ public class Optimierer
             //optimizeFRight();
         }
     }
-    
-    /*public void iAmTheBest(String way){
-        if(way  == "left") geher.links;
-        else if(way == "right") geher.rechts;
-        geher.links(); //priority no.1: left
-        if (geher.pruefe()==2) return(2);
-        if (geher.pruefe()==0) 
-        {
-            step();
-            if (left() == 2) return(2);
-            backstep();
-        }
-        geher.rechts(); //priority no.2: forwards
-        if (geher.pruefe()==2) return(2);
-        if (geher.pruefe()==0) 
-        {
-            step();
-            if (left() == 2) return(2);
-            backstep();
-        }
-        geher.rechts(); //priority no.3: right
-        if (geher.pruefe()==2) return(2);
-        if (geher.pruefe()==0) 
-        {
-            step();
-            if (left() == 2) return(2);
-            backstep();
-        }
-        geher.links(); //now he's again looking forward
-        return(0);
-    }
-    
-    /*public void optimizeLeft(){
-        labgeher.left();
-    }*/
 }

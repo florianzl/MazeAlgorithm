@@ -6,6 +6,4 @@ comment2.params=lmax\ rmax\ flmax\ frmax
 comment2.target=void\ best(int,\ int,\ int,\ int)
 comment3.params=
 comment3.target=void\ woIsTheBest()
-comment4.params=
-comment4.target=void\ optimizeLeft()
-numComments=5
+numComments=4
