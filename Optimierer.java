@@ -1,38 +1,40 @@
 import basis.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class Optimierer
-{    
-    //private geher Geher;
-    //private Labgeher labgeher;
-    
+
+public class Optimierer {
+
+    private Geher geher;
+
     private String lowest;
-
     public BeschriftungsFeld bestLabel;
-    
-    private Map<Integer, int[]> keyPoints = new HashMap<Integer, int[]>();
-    
-    public Optimierer(){
-        //labgeher = new Labgeher();
-        bestLabel = new BeschriftungsFeld("bester",600,500,100,30);
-        bestLabel = new BeschriftungsFeld("Starten um schnellsten Geher zu finden!",190,70,320,30);
+    public Map<Integer, Map.Entry<Integer, Integer>> leftWay = new HashMap<>();
+    public Map<Integer, Map.Entry<Integer, Integer>> rightWay = new HashMap<>();
+    public Map<Integer, Map.Entry<Integer, Integer>> fLeftWay = new HashMap<>();
+    public Map<Integer, Map.Entry<Integer, Integer>> fRightWay = new HashMap<>();
+
+
+
+    public Optimierer() {
+
+        bestLabel = new BeschriftungsFeld("Starten um schnellsten Geher zu finden!",190,130,320,30);
         bestLabel.setzeSchriftGroesse(12);
     }
-    
-    public void best(int lmax, int rmax, int flmax, int frmax){
-        System.out.println("best startet"); 
+
+
+    //compares the 4 methods and finds out which is the best
+    public void best(int lmax, int rmax, int flmax, int frmax) {
+
+        System.out.println("best startet");
         int low;
         boolean equal = false; //to know when all the methods are equal to each other
+
         if(lmax < rmax) {
             low = lmax;
             lowest = "Linksgeher";
         }
         //when all the methods are equal to each other
-        else if(lmax == rmax){
+        else if(lmax == rmax) {
             low = lmax;
             equal = true;
         }
@@ -40,31 +42,75 @@ public class Optimierer
             low = rmax;
             lowest = "Rechtsgeher";
         }
-        if(flmax < low){
+        if(flmax < low) {
             low = flmax;
             lowest = "G-R-geher";
         }
-        if(frmax < low){
+        if(frmax < low) {
             low = frmax;
             lowest = "G-L-geher";
         }
 
-        if(equal == false)bestLabel.setzeText(lowest + " war mit " + low + " Schritten am schnellsten!");
-        else bestLabel.setzeText("Alle Geher waren gleich schnell!"); 
+        if (!equal) bestLabel.setzeText(lowest + " war mit " + low + " Schritten am schnellsten!");
+        else bestLabel.setzeText("Alle Geher waren gleich schnell!");
     }
-    
-    private void woIsTheBest(){
+
+
+    //optimizes the best method
+    private void whoIsTheBest(){
         if (lowest == "Linksgeher");{
-            //optimizeLeft();
+            lOptimize();
         }
         if (lowest == "rechtsgeher"){
-            //optimizeRight();
+            rOptimize();
         }
         if (lowest == "G-L-geher"){
-            //optimizeFLeft();
+            fLOptimize();
         }
         if (lowest == "G-R-geher"){
-            //optimizeFRight();
+            fROtimize();
         }
     }
+
+
+    public void lCompare(int key1, int x2, int y2) {
+
+        int key2 = 0;
+        for (Map.Entry<Integer, Map.Entry<Integer, Integer>> map : leftWay.entrySet()) {
+
+            if (map.getValue().getKey() == x2 && map.getValue().getValue() == y2){
+
+                key2 = map.getKey();
+            }
+        }
+
+        if (key1 < key2) {
+
+            //changes coords to green
+        }
+    }
+
+    public void lOptimize() {
+
+        //NOTHING
+    }
+
+
+    private void rOptimize() {
+
+        //NOTHING
+    }
+
+
+    private void fLOptimize() {
+
+        //NOTHING
+    }
+
+
+    private void fROtimize() {
+
+        //NOTHING
+    }
+
 }
