@@ -9,49 +9,50 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     private Optimierer optimierer;
     private Stift stift;
 
-    private Knopf end, angeber,ladeknopf, optR, optL, optFL, optFR;
-    private ZahlenFeld lSteps, lMax, lBest, rSteps, rMax, rBest, fLSteps, fLMax, fLBest, fRSteps , fRMax, fRBest;
+    private Knopf end, start, load, rightOpt, leftOpt, fLeftOpt, optFR;
+    private ZahlenFeld leftSteps, leftMax, leftBest, rightSteps, rightMax, rightBest, fLeftSteps, fLeftMax, fLeftBest, fRightSteps, fRightMax, fRightBest;
 
     private boolean loaded = false;
     private int steps = 0;
     private int stepsMax = 0;
 
-    public Map<Integer, Map.Entry<Integer, Integer>> way;
+    //Map.Entry<Integer, Integer> inspired by Laurens H.
+    public Map<Integer, Map.Entry<Integer, Integer>> currentWay;
 
 
-    //constructor
     public Labgeher(){
+        //constructor
         this.initGui();
     }
 
 
     public void initGui() {
 
+        this.setzeGroesse(800,600);
+        this.setzeTitel("Labgeher");
+
         bild = new Bild();
         geher = new Geher(bild);
         optimierer = new Optimierer();
 
-        this.setzeGroesse(800,600);
-        this.setzeTitel("Labgeher");
-
         end = new Knopf("Ende",690,550,100,30);
         end.setzeKnopfLauscher(this);
-        ladeknopf = new Knopf("Lade Bild",28,190,120,30);
-        ladeknopf.setzeKnopfLauscher(this);
-        angeber = new Knopf("Angeber",28,235,120,30);
-        angeber.setzeKnopfLauscher(this);
-        optL = new Knopf("opt. Links", 28, 300, 120, 30);
-        optL.setzeKnopfLauscher(this);
-        optR = new Knopf("opt. Rechts", 28, 345, 120, 30);
-        optR.setzeKnopfLauscher(this);
-        optFL = new Knopf("opt. G-Links", 28, 390, 120, 30);
-        optFL.setzeKnopfLauscher(this);
+        load = new Knopf("Lade Bild",28,190,120,30);
+        load.setzeKnopfLauscher(this);
+        start = new Knopf("Angeber",28,235,120,30);
+        start.setzeKnopfLauscher(this);
+        leftOpt = new Knopf("opt. Links", 28, 300, 120, 30);
+        leftOpt.setzeKnopfLauscher(this);
+        rightOpt = new Knopf("opt. Rechts", 28, 345, 120, 30);
+        rightOpt.setzeKnopfLauscher(this);
+        fLeftOpt = new Knopf("opt. G-Links", 28, 390, 120, 30);
+        fLeftOpt.setzeKnopfLauscher(this);
         optFR = new Knopf("opt. G-Rechts", 28, 435, 120, 30);
         optFR.setzeKnopfLauscher(this);
 
-        optL.setzeBenutzbar(false);
-        optR.setzeBenutzbar(false);
-        optFL.setzeBenutzbar(false);
+        leftOpt.setzeBenutzbar(false);
+        rightOpt.setzeBenutzbar(false);
+        fLeftOpt.setzeBenutzbar(false);
         optFR.setzeBenutzbar(false);
 
         stift = new Stift();
@@ -59,7 +60,6 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         stift.dreheBis(0);
         stift.setzeFarbe(Farbe.GRAU);
         stift.setzeFuellMuster(1);
-
         Hilfe.warte(1000);
         stift.zeichneRechteck(320,320);
 
@@ -67,20 +67,21 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         BeschriftungsFeld rechtsLabel = new BeschriftungsFeld("Rechtsgeher", 615, 200, 100, 30);
         BeschriftungsFeld glLabel = new BeschriftungsFeld("G-L-Geher",619,300,100,30);
         BeschriftungsFeld grLabel = new BeschriftungsFeld("G-R-Geher",619,400,100,30);
-        lSteps = new ZahlenFeld(550,140,60,30);
-        rSteps = new ZahlenFeld(550,240,60,30);
-        fLSteps = new ZahlenFeld(550,340,60,30);
-        fRSteps = new ZahlenFeld(550,440,60,30);
-        lMax = new ZahlenFeld(620,140,60,30);
-        rMax = new ZahlenFeld(620,240,60,30);
-        fLMax = new ZahlenFeld(620,340,60,30);
-        fRMax = new ZahlenFeld(620,440,60,30);
-        rBest = new ZahlenFeld(690, 240, 60, 30);
-        lBest = new ZahlenFeld(690, 140, 60, 30);
-        fLBest = new ZahlenFeld(690, 340, 60, 30);
-        fRBest = new ZahlenFeld(690, 440, 60, 30);
 
-        way = new HashMap<>();
+        leftSteps = new ZahlenFeld(550,140,60,30);
+        rightSteps = new ZahlenFeld(550,240,60,30);
+        fLeftSteps = new ZahlenFeld(550,340,60,30);
+        fRightSteps = new ZahlenFeld(550,440,60,30);
+        leftMax = new ZahlenFeld(620,140,60,30);
+        rightMax = new ZahlenFeld(620,240,60,30);
+        fLeftMax = new ZahlenFeld(620,340,60,30);
+        fRightMax = new ZahlenFeld(620,440,60,30);
+        rightBest = new ZahlenFeld(690, 240, 60, 30);
+        leftBest = new ZahlenFeld(690, 140, 60, 30);
+        fLeftBest = new ZahlenFeld(690, 340, 60, 30);
+        fRightBest = new ZahlenFeld(690, 440, 60, 30);
+
+        currentWay = new HashMap<>();
     }
 
 
@@ -95,29 +96,26 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //step forward
     public void step() {
-
+        //step forward
         geher.vor();
         steps++;
         stepsMax++;
-        //coords.put(geher.x, geher.y);
-        way.put(stepsMax, new AbstractMap.SimpleEntry<>(geher.x, geher.y));
+        //AbstrctMap.SimpleEntry inspired by Laurens H.
+        currentWay.put(stepsMax, new AbstractMap.SimpleEntry<>(geher.x, geher.y));
     }
 
 
-    //step backwards
     public void backstep() {
-
+        //step backwards
         geher.zurueck();
         steps--;
     }
 
 
-    //left method
     public int left() {
+        //left method
         geher.links(); //priority no.1: left
-
         if (geher.pruefe()==2) return(2);
         if (geher.pruefe()==0) {
             step();
@@ -143,9 +141,8 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //right method
     public int right() {
-
+        //right method
         geher.rechts(); //priority no.1: right
         if (geher.pruefe()==2) return(2);
         if (geher.pruefe()==0) {
@@ -172,9 +169,8 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //forward-left method
     public int fLeft() {
-
+        //forward-left method
         //priority no.1: forwards
         if (geher.pruefe()==2) return(2);
         if (geher.pruefe()==0) {
@@ -202,9 +198,8 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //forward-right method
     public int fRight() {
-
+        //forward-right method
         //priority no.1: forward
         if (geher.pruefe()==2) return(2);
         if (geher.pruefe()==0) {
@@ -232,9 +227,8 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //resets the settings of the game
     public void reset() {
-
+        //resets the maze
         steps = 0;
         stepsMax = 0;
         Hilfe.warte(2000);
@@ -245,141 +239,142 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    //solves the Lab using the left method
     public void solveLeft() {
-
+        //solves the Lab using the left method
         left();
         if(left() == 0) {
             System.out.println("Ziel NICHT gefunden");
-            lSteps.setzeZahl(0);
-            lMax.setzeZahl(stepsMax);
+            leftSteps.setzeZahl(0);
+            leftMax.setzeZahl(stepsMax);
         }
         if(left() == 2) {
             System.out.println("Ziel gefunden");
-            lSteps.setzeZahl(steps);
-            lMax.setzeZahl(stepsMax);
+            leftSteps.setzeZahl(steps);
+            leftMax.setzeZahl(stepsMax);
         }
     }
 
 
-    //solves the Lab using the right method
     public void solveRight() {
-
+        //solves the Lab using the right method
         right();
         if(right() == 0) {
             System.out.println("Ziel NICHT gefunden");
-            rSteps.setzeZahl(0);
-            rMax.setzeZahl(stepsMax);
+            rightSteps.setzeZahl(0);
+            rightMax.setzeZahl(stepsMax);
         }
         if(right() == 2) {
             System.out.println("Ziel gefunden");
-            rSteps.setzeZahl(steps);
-            rMax.setzeZahl(stepsMax);
+            rightSteps.setzeZahl(steps);
+            rightMax.setzeZahl(stepsMax);
         }
     }
 
 
-    //solves the Lab using the forward-left method
     public void solveFLeft() {
-
+        //solves the Lab using the forward-left method
         fLeft();
         if(fLeft() == 0){
             System.out.println("Ziel NICHT gefunden");
-            fLSteps.setzeZahl(0);
-            fLMax.setzeZahl(stepsMax);
+            fLeftSteps.setzeZahl(0);
+            fLeftMax.setzeZahl(stepsMax);
         }
         if(fLeft() == 2) {
             System.out.println("Ziel gefunden");
-            fLSteps.setzeZahl(steps);
-            fLMax.setzeZahl(stepsMax);
+            fLeftSteps.setzeZahl(steps);
+            fLeftMax.setzeZahl(stepsMax);
         }
     }
 
 
-    //solves the Lab using the forward-right method
     public void solveFRight() {
-
+        //solves the Lab using the forward-right method
         fRight();
         if(fRight() == 0) {
             System.out.println("Ziel NICHT gefunden");
-            fRSteps.setzeZahl(0);
-            fRMax.setzeZahl(stepsMax);
+            fRightSteps.setzeZahl(0);
+            fRightMax.setzeZahl(stepsMax);
         }
         if(fRight() == 2) {
             System.out.println("Ziel gefunden");
-            fRSteps.setzeZahl(steps);
-            fRMax.setzeZahl(stepsMax);
+            fRightSteps.setzeZahl(steps);
+            fRightMax.setzeZahl(stepsMax);
         }
     }
 
 
-    //starts all the methods to solve the lab successively
     public void solveLab() {
-
+        //starts all the methods to solve the lab successively
         optimierer.bestLabel.setzeText("schnellster Geher wird ermittelt...");
         steps = 0;
         stepsMax = 0;
         solveLeft();
-        optimierer.leftWay.putAll(way);
+        optimierer.leftWay.putAll(currentWay);
         reset();
         solveRight();
-        optimierer.rightWay.putAll(way);
+        optimierer.rightWay.putAll(currentWay);
         reset();
         solveFLeft();
-        optimierer.fLeftWay.putAll(way);
+        optimierer.fLeftWay.putAll(currentWay);
         reset();
         solveFRight();
         enableOpt();
-        optimierer.fRightWay.putAll(way);
+        optimierer.fRightWay.putAll(currentWay);
+
+        /*
         System.out.println(optimierer.leftWay);
         System.out.println(optimierer.rightWay);
         System.out.println(optimierer.fLeftWay);
         System.out.println(optimierer.fRightWay);
-        optimierer.lCompare(1, optimierer.leftWay.get(10).getKey(), optimierer.leftWay.get(10).getValue());
+        */
     }
 
 
-    //enables the optimize buttons
     private void enableOpt() {
-        optL.setzeBenutzbar(true);
-        optR.setzeBenutzbar(true);
-        optFL.setzeBenutzbar(true);
+        //enables the optimize buttons
+        leftOpt.setzeBenutzbar(true);
+        rightOpt.setzeBenutzbar(true);
+        fLeftOpt.setzeBenutzbar(true);
         optFR.setzeBenutzbar(true);
     }
 
 
-    //listener of the buttons
     @Override
     public void bearbeiteKnopfDruck(Knopf k) {
-
+        //listener of the buttons
         if (k ==end) {
             this.gibFrei();
         }
 
-        else if (k ==angeber) {
+        else if (k == start) {
             if (loaded) {
                 solveLab();
-                optimierer.best(lMax.ganzZahl(), rMax.ganzZahl(), fLMax.ganzZahl(), fRMax.ganzZahl());
+                optimierer.best(leftMax.ganzZahl(), rightMax.ganzZahl(), fLeftMax.ganzZahl(), fRightMax.ganzZahl());
             }
-            else System.out.println("Bitte Wähle erst ein Maze aus bevor du das Programm startest");
         }
-        else if (k ==ladeknopf) {
+
+        else if (k == load) {
             mazeLoad();
             loaded = true;
             geher.start(65,245);
             System.out.println("Maze vorhanden");
         }
-        else if (k == optL) {
+
+        else if (k == leftOpt) {
+            optimierer.leftOptimize();
+        }
+
+        /*
+        else if (k == rightOpt) {
             //NOTHING
         }
-        else if (k == optR) {
-            //NOTHING
-        }
-        else if (k == optFL) {
+        else if (k == fLeftOpt) {
             //NOTHING
         }
         else if (k == optFR) {
             //NOTHING
         }
+        */
+
     }
 }
