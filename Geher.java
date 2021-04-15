@@ -22,6 +22,7 @@ public class Geher {
 
 
     public Geher(Bild b) {
+        //Constructor
         bild = b;
         stift = new Stift();
         stift.maleAuf(bild);
@@ -74,7 +75,6 @@ public class Geher {
             else if (richtung == Richtung.DOWN) richtung = Richtung.LEFT;
             else if (richtung == Richtung.RIGHT) richtung = Richtung.DOWN;
         }
-        else System.out.println("Du bist zu dumm für diese Welt");
     }
 
 
