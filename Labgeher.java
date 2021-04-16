@@ -35,11 +35,11 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         geher = new Geher(bild);
         optimierer = new Optimierer();
 
-        end = new Knopf("Ende",690,550,100,30);
+        end = new Knopf("close",690,550,100,30);
         end.setzeKnopfLauscher(this);
-        load = new Knopf("Lade Bild",28,190,120,30);
+        load = new Knopf("load image",28,190,120,30);
         load.setzeKnopfLauscher(this);
-        start = new Knopf("Angeber",28,235,120,30);
+        start = new Knopf("start",28,235,120,30);
         start.setzeKnopfLauscher(this);
         leftOpt = new Knopf("opt. Links", 28, 300, 120, 30);
         leftOpt.setzeKnopfLauscher(this);
@@ -63,10 +63,10 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         Hilfe.warte(1000);
         stift.zeichneRechteck(320,320);
 
-        BeschriftungsFeld linksLabel = new BeschriftungsFeld("Linksgeher", 619, 100, 100, 30);
-        BeschriftungsFeld rechtsLabel = new BeschriftungsFeld("Rechtsgeher", 615, 200, 100, 30);
-        BeschriftungsFeld glLabel = new BeschriftungsFeld("G-L-Geher",619,300,100,30);
-        BeschriftungsFeld grLabel = new BeschriftungsFeld("G-R-Geher",619,400,100,30);
+        BeschriftungsFeld leftLabel = new BeschriftungsFeld("Linksgeher", 619, 100, 100, 30);
+        BeschriftungsFeld rightLabel = new BeschriftungsFeld("Rechtsgeher", 615, 200, 100, 30);
+        BeschriftungsFeld fLeftLabel = new BeschriftungsFeld("G-L-Geher",619,300,100,30);
+        BeschriftungsFeld fRightLabel= new BeschriftungsFeld("G-R-Geher",619,400,100,30);
 
         leftSteps = new ZahlenFeld(550,140,60,30);
         rightSteps = new ZahlenFeld(550,240,60,30);
@@ -85,9 +85,9 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     }
 
 
-    private void mazeLoad() {
+    private void loadMaze() {
 
-        bild.ladeBild("D:\\projects\\IntelliJ_Template\\Mazes\\vickymaze.png");
+        bild.ladeBild("D:\\projects\\IntelliJ_Template\\Mazes\\maze6.png");
         bildorg = new Bild();
         bildorg.setBild(bild.getBild().getClone());
         bild.setzePosition(200,200);
@@ -310,8 +310,10 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         stepsMax = 0;
         solveLeft();
         optimierer.leftWay.putAll(currentWay);
-        reset();
-        solveRight();
+        leftOpt.setzeBenutzbar(true);
+        System.out.println(optimierer.leftWay);
+        //reset();
+        /*solveRight();
         optimierer.rightWay.putAll(currentWay);
         reset();
         solveFLeft();
@@ -321,12 +323,12 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         enableOpt();
         optimierer.fRightWay.putAll(currentWay);
 
-        /*
+
         System.out.println(optimierer.leftWay);
         System.out.println(optimierer.rightWay);
         System.out.println(optimierer.fLeftWay);
-        System.out.println(optimierer.fRightWay);
-        */
+        System.out.println(optimierer.fRightWay);*/
+
     }
 
 
@@ -354,14 +356,14 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         }
 
         else if (k == load) {
-            mazeLoad();
+            loadMaze();
             loaded = true;
             geher.start(65,245);
             System.out.println("Maze vorhanden");
         }
 
         else if (k == leftOpt) {
-            optimierer.leftOptimize();
+            optimierer.leftOptimize(stift, bild);
         }
 
         /*

@@ -57,7 +57,7 @@ public class Geher {
         stift.zeichneKreis(4);
         stift.hoch();
         if (z<0) stift.bewegeUm(z);
-        Hilfe.warte(10);
+        Hilfe.warte(5);
     }
 
 
