@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Labgeher extends Fenster implements KnopfLauscher {
 
+
     //declaration
     private Bild bild, bildorg;
     private Geher geher;
@@ -14,15 +15,18 @@ public class Labgeher extends Fenster implements KnopfLauscher {
 
     private boolean loaded = false;
     private int steps = 0;
-    private int stepsMax = 0;
+    public int stepsMax = 0;
+    public int counterBest = 0;
 
     //Map.Entry<Integer, Integer> inspired by Laurens H.
-    public Map<Integer, Map.Entry<Integer, Integer>> currentWay;
+    public Map<Integer, Map.Entry<Integer, Integer>> way;
 
+    public static Labgeher instance;
 
     public Labgeher(){
         //constructor
         this.initGui();
+        this.instance = this;
     }
 
 
@@ -81,13 +85,14 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         fLeftBest = new ZahlenFeld(690, 340, 60, 30);
         fRightBest = new ZahlenFeld(690, 440, 60, 30);
 
-        currentWay = new HashMap<>();
+
+        way = new HashMap<>();
     }
 
 
     private void loadMaze() {
 
-        bild.ladeBild("D:\\projects\\IntelliJ_Template\\Mazes\\maze6.png");
+        bild.ladeBild();
         bildorg = new Bild();
         bildorg.setBild(bild.getBild().getClone());
         bild.setzePosition(200,200);
@@ -101,8 +106,8 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         geher.vor();
         steps++;
         stepsMax++;
-        //AbstrctMap.SimpleEntry inspired by Laurens H.
-        currentWay.put(stepsMax, new AbstractMap.SimpleEntry<>(geher.x, geher.y));
+        //AbstractMap.SimpleEntry inspired by Laurens H.
+        way.put(stepsMax, new AbstractMap.SimpleEntry<>(geher.x, geher.y));
     }
 
 
@@ -110,6 +115,9 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         //step backwards
         geher.zurueck();
         steps--;
+        stepsMax++;
+        //AbstractMap.SimpleEntry inspired by Laurens H.
+        way.put(stepsMax, new AbstractMap.SimpleEntry<>(geher.x, geher.y));
     }
 
 
@@ -231,11 +239,13 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         //resets the maze
         steps = 0;
         stepsMax = 0;
-        Hilfe.warte(2000);
+        counterBest = 0;
+        Hilfe.warte(250);
         bild.setBild(bildorg.getBild().getClone());
         bild.setzePosition(200,200);
         bild.zeige();
         geher.start(65,245);
+        way.clear();
     }
 
 
@@ -309,26 +319,13 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         steps = 0;
         stepsMax = 0;
         solveLeft();
-        optimierer.leftWay.putAll(currentWay);
-        leftOpt.setzeBenutzbar(true);
-        System.out.println(optimierer.leftWay);
-        //reset();
-        /*solveRight();
-        optimierer.rightWay.putAll(currentWay);
+        reset();
+        solveRight();
         reset();
         solveFLeft();
-        optimierer.fLeftWay.putAll(currentWay);
         reset();
         solveFRight();
         enableOpt();
-        optimierer.fRightWay.putAll(currentWay);
-
-
-        System.out.println(optimierer.leftWay);
-        System.out.println(optimierer.rightWay);
-        System.out.println(optimierer.fLeftWay);
-        System.out.println(optimierer.fRightWay);*/
-
     }
 
 
@@ -363,20 +360,35 @@ public class Labgeher extends Fenster implements KnopfLauscher {
         }
 
         else if (k == leftOpt) {
-            optimierer.leftOptimize(stift, bild);
+            reset();
+            left();
+            Hilfe.warte(500);
+            optimierer.optimize(stift, bild);
+            leftBest.setzeZahl(counterBest);
         }
 
-        /*
         else if (k == rightOpt) {
-            //NOTHING
+            reset();
+            right();
+            Hilfe.warte(500);
+            optimierer.optimize(stift, bild);
+            rightBest.setzeZahl(counterBest);
         }
         else if (k == fLeftOpt) {
-            //NOTHING
+            reset();
+            fLeft();
+            Hilfe.warte(500);
+            optimierer.optimize(stift, bild);
+            fLeftBest.setzeZahl(counterBest);
         }
         else if (k == optFR) {
-            //NOTHING
+            reset();
+            fRight();
+            Hilfe.warte(500);
+            optimierer.optimize(stift, bild);
+            fRightBest.setzeZahl(counterBest);
         }
-        */
+
 
     }
 }
