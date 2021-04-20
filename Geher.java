@@ -57,7 +57,7 @@ public class Geher {
         stift.zeichneKreis(4);
         stift.hoch();
         if (z<0) stift.bewegeUm(z);
-        Hilfe.warte(5);
+        Hilfe.warte(1);
     }
 
 
@@ -78,19 +78,19 @@ public class Geher {
     }
 
 
-    private void updateCoords() {
+    private void updateCoords(int i) {
 
         if (richtung == Richtung.UP){
-            y = y - 10;
+            y = y - i;
         }
         else if (richtung == Richtung.DOWN){
-            y = y + 10;
+            y = y + i;
         }
         else if (richtung == Richtung.RIGHT){
-            x = x + 10;
+            x = x + i;
         }
         else if (richtung == Richtung.LEFT) {
-            x = x - 10;
+            x = x - i;
         }
     }
 
@@ -98,14 +98,14 @@ public class Geher {
     public void vor() {
 
         gehe(10,4);
-        updateCoords();
+        updateCoords(10);
     }
 
 
     public void zurueck() {
 
         gehe(-10,4);
-        updateCoords();
+        updateCoords(-10);
     }
 
 
