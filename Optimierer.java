@@ -60,7 +60,7 @@ public class Optimierer {
     private int keyCompare(int key1, int x2, int y2){
         int key2 = getStep(x2, y2);
 
-        if (key2 > key1) {;
+        if (key2 > key1) {
             return key2;
         }
         return key1;
