@@ -18,7 +18,6 @@ public class Labgeher extends Fenster implements KnopfLauscher {
     public int stepsMax = 0;
     public int counterBest = 0;
 
-    //Map.Entry<Integer, Integer> inspired by Laurens H.
     public Map<Integer, Map.Entry<Integer, Integer>> way;
 
     public static Labgeher instance;
