@@ -2,13 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32851f8b-d2dc-4cd9-a2ca-6822afa48051" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Labgeher.class" beforeDir="false" afterPath="$PROJECT_DIR$/Labgeher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labgeher.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Labgeher.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labgeher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Labgeher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Optimierer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/Optimierer.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Optimierer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/basis.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Geher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Geher.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Geher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LabLoeser.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labgeher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labgeher.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labgeher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Optimierer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Optimierer.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Optimierer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Richtung.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Richtung.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Richtung.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1r4L4MWuAjss0TwjV9audrEG5ke" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -25,7 +39,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -35,7 +55,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618230223344</updated>
+      <workItem from="1645477858175" duration="3175000" />
+      <workItem from="1645481208953" duration="56000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
