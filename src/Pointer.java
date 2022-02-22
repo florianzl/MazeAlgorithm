@@ -1,3 +1,4 @@
+import basis.*;
 import java.awt.*;
 
 public class Pointer {
@@ -19,7 +20,7 @@ public class Pointer {
         pen.hoch();
         pen.bewegeAuf(x,y);
         pen.dreheBis(90);
-        direction = Richtung.UP;
+        direction = Direction.UP;
         this.x = x;
         this.y = y;
     }
@@ -48,46 +49,46 @@ public class Pointer {
     private void updateDirection(int temp) {
 
         if (temp == 90){
-            if (direction == Richtung.UP) direction = Richtung.LEFT;
-            else if (direction == Richtung.LEFT) direction = Richtung.DOWN;
-            else if (direction == Richtung.DOWN) direction = Richtung.RIGHT;
-            else if (direction == Richtung.RIGHT) direction = Richtung.UP;
+            if (direction == Direction.UP) direction = Direction.LEFT;
+            else if (direction == Direction.LEFT) direction = Direction.DOWN;
+            else if (direction == Direction.DOWN) direction = Direction.RIGHT;
+            else if (direction == Direction.RIGHT) direction = Direction.UP;
         }
         else if (temp == -90){
-            if (direction == Richtung.UP) direction = Richtung.RIGHT;
-            else if (direction == Richtung.LEFT) direction = Richtung.UP;
-            else if (direction == Richtung.DOWN) direction = Richtung.LEFT;
-            else if (direction == Richtung.RIGHT) direction = Richtung.DOWN;
+            if (direction == Direction.UP) direction = Direction.RIGHT;
+            else if (direction == Direction.LEFT) direction = Direction.UP;
+            else if (direction == Direction.DOWN) direction = Direction.LEFT;
+            else if (direction == Direction.RIGHT) direction = Direction.DOWN;
         }
     }
 
     private void updateCoordinates(int i) {
 
-        if (direction == Richtung.UP){
+        if (direction == Direction.UP){
             y = y - i;
         }
-        else if (direction == Richtung.DOWN){
+        else if (direction == Direction.DOWN){
             y = y + i;
         }
-        else if (direction == Richtung.RIGHT){
+        else if (direction == Direction.RIGHT){
             x = x + i;
         }
-        else if (direction == Richtung.LEFT) {
+        else if (direction == Direction.LEFT) {
             x = x - i;
         }
     }
 
     public void forwards() {
 
-        gehe(10,4);
-        updateCoords(10);
+        go(10,4);
+        updateCoordinates(10);
     }
 
 
     public void backwards() {
 
-        gehe(-10,4);
-        updateCoords(-10);
+        go(-10,4);
+        updateCoordinates(-10);
     }
 
 
@@ -99,15 +100,15 @@ public class Pointer {
 
     public void turnRight() {
 
-        drehe(-90);
-        updateRichtung(-90);
+        turn(-90);
+        updateDirection(-90);
     }
 
 
     public void turnLeft() {
 
-        drehe(90);
-        updateRichtung(90);
+        turn(90);
+        updateDirection(90);
     }
 
 

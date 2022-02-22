@@ -1,10 +1,12 @@
+import basis.*;
 import java.awt.*;
 import java.util.Map;
 
+
 public class Optimize {
 
-    private Bild bild;
-    private Stift stift;
+    private Bild img;
+    private Stift pen;
     int x;
     int y;
     public BeschriftungsFeld bestLabel;
@@ -45,7 +47,7 @@ public class Optimize {
 
     private int getStep(int x, int y){
         int key = 0;
-        for (Map.Entry<Integer, Map.Entry<Integer, Integer>> map : Labgeher.instance.way.entrySet()) {
+        for (Map.Entry<Integer, Map.Entry<Integer, Integer>> map : SolveMaze.instance.way.entrySet()) {
 
             if (map.getValue().getKey() == x && map.getValue().getValue() == y){
 
@@ -68,28 +70,28 @@ public class Optimize {
     private void move(int x1, int y1, int x2, int y2){
 
         if (x2 > x1) {
-            stift.bewegeAuf(x1 + 10, y1);
+            pen.bewegeAuf(x1 + 10, y1);
             x = x1 + 10;
         }
         if (x2 < x1) {
-            stift.bewegeAuf(x1 - 10, y1);
+            pen.bewegeAuf(x1 - 10, y1);
             x = x1 - 10;
         }
         if (y2 > y1) {
-            stift.bewegeAuf(x1, y1 + 10);
+            pen.bewegeAuf(x1, y1 + 10);
             y = y1 + 10;
         }
         if (y2 < y1) {
-            stift.bewegeAuf(x1, y1 - 10);
+            pen.bewegeAuf(x1, y1 - 10);
             y = y1 - 10;
         }
 
-        stift.runter();
-        stift.zeichneKreis(4);
-        stift.hoch();
+        pen.runter();
+        pen.zeichneKreis(4);
+        pen.hoch();
         Hilfe.warte(10);
 
-        Labgeher.instance.counterBest++;
+        SolveMaze.instance.counterBest++;
 
 
     }
@@ -100,13 +102,13 @@ public class Optimize {
 
         for (int j = xPos; j < 300; j+= 10){
 
-            if (bild.farbeVon(j, yPos).equals(Color.BLACK)) break;
-            if (bild.farbeVon(j, yPos).equals(Color.GREEN))  best = keyCompare(best, j, yPos);
+            if (img.farbeVon(j, yPos).equals(Color.BLACK)) break;
+            if (img.farbeVon(j, yPos).equals(Color.GREEN))  best = keyCompare(best, j, yPos);
         }
         for (int j = xPos; j > 0; j-= 10){
 
-            if (bild.farbeVon(j, yPos).equals(Color.BLACK)) break;
-            if (bild.farbeVon(j, yPos).equals(Color.GREEN))  best = keyCompare(best, j, yPos);
+            if (img.farbeVon(j, yPos).equals(Color.BLACK)) break;
+            if (img.farbeVon(j, yPos).equals(Color.GREEN))  best = keyCompare(best, j, yPos);
         }
         return best;
     }
@@ -116,13 +118,13 @@ public class Optimize {
 
         for (int j = yPos; j < 300; j+= 10){
 
-            if (bild.farbeVon(xPos, j).equals(Color.BLACK)) break;
-            if (bild.farbeVon(xPos, j).equals(Color.GREEN))  best = keyCompare(best, xPos, j);
+            if (img.farbeVon(xPos, j).equals(Color.BLACK)) break;
+            if (img.farbeVon(xPos, j).equals(Color.GREEN))  best = keyCompare(best, xPos, j);
         }
         for (int j = yPos; j > 0; j-= 10){
 
-            if (bild.farbeVon(xPos, j).equals(Color.BLACK)) break;
-            if (bild.farbeVon(xPos, j).equals(Color.GREEN))  best = keyCompare(best, xPos, j);
+            if (img.farbeVon(xPos, j).equals(Color.BLACK)) break;
+            if (img.farbeVon(xPos, j).equals(Color.GREEN))  best = keyCompare(best, xPos, j);
         }
         return best;
     }
@@ -131,29 +133,29 @@ public class Optimize {
     public void optimize(Stift stift, Bild bild) {
         x = 65;
         y = 245;
-        this.stift = stift;
-        this.bild = bild;
-        this.stift.maleAuf(this.bild);
-        this.stift.bewegeAuf(65, 245);
-        this.stift.dreheBis(90);
-        this.stift.setzeFarbe(Color.PINK);
-        this.stift.setzeFuellMuster(1);
-        this.stift.hoch();
+        this.pen = stift;
+        this.img = bild;
+        this.pen.maleAuf(this.img);
+        this.pen.bewegeAuf(65, 245);
+        this.pen.dreheBis(90);
+        this.pen.setzeFarbe(Color.PINK);
+        this.pen.setzeFuellMuster(1);
+        this.pen.hoch();
 
         while (!checkLastStep(x, y)) {
 
             int bestX = checkX(x, y);
             int bestY = checkY(x, y);
 
-            if (bestX > bestY) move(x, y, Labgeher.instance.way.get(bestX).getKey(), Labgeher.instance.way.get(bestX).getValue());
-            else move(x, y, Labgeher.instance.way.get(bestY).getKey(), Labgeher.instance.way.get(bestY).getValue());
+            if (bestX > bestY) move(x, y, SolveMaze.instance.way.get(bestX).getKey(), SolveMaze.instance.way.get(bestX).getValue());
+            else move(x, y, SolveMaze.instance.way.get(bestY).getKey(), SolveMaze.instance.way.get(bestY).getValue());
         }
     }
 
 
     private boolean checkLastStep(int x, int y){
         System.out.println(getStep(x, y));
-        System.out.println(Labgeher.instance.stepsMax);
-        return getStep(x, y) == Labgeher.instance.stepsMax;
+        System.out.println(SolveMaze.instance.stepsMax);
+        return getStep(x, y) == SolveMaze.instance.stepsMax;
     }
 }

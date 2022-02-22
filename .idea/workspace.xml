@@ -2,24 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32851f8b-d2dc-4cd9-a2ca-6822afa48051" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/basis.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Geher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Geher.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Geher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LabLoeser.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labgeher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labgeher.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labgeher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Optimierer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.TXT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Richtung.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Richtung.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Richtung.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Geher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Geher.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Geher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/LabLoeser.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Labgeher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Labgeher.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Labgeher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Optimierer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Optimierer.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Optimierer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/README.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Richtung.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Richtung.ctxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/Richtung.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/old/package.bluej" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Optimize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Optimize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SolveMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SolveMaze.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -57,6 +59,9 @@
       <updated>1618230223344</updated>
       <workItem from="1645477858175" duration="3175000" />
       <workItem from="1645481208953" duration="56000" />
+      <workItem from="1645481269572" duration="264000" />
+      <workItem from="1645526661636" duration="18000" />
+      <workItem from="1645527767197" duration="21000" />
     </task>
     <servers />
   </component>

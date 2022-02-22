@@ -14,7 +14,7 @@ public class SolveMaze extends Fenster implements KnopfLauscher {
     private ZahlenFeld leftSteps, leftMax, leftBest;
     private ZahlenFeld rightSteps, rightMax, rightBest;
     private ZahlenFeld forwardLeftSteps, forwardLeftMax, forwardLeftBest;
-    private Zahlenfeld forwardRightSteps, forwardRightMax, forwardRightBest;
+    private ZahlenFeld forwardRightSteps, forwardRightMax, forwardRightBest;
 
     private boolean loaded = false;
     private int steps = 0;
@@ -38,8 +38,8 @@ public class SolveMaze extends Fenster implements KnopfLauscher {
         this.setzeTitel("MazeAlgorithm");
 
         img = new Bild();
-        pointer = new Geher(img);
-        optimize = new Optimierer();
+        pointer = new Pointer(img);
+        optimize = new Optimize();
 
         end = new Knopf("close",690,550,100,30);
         end.setzeKnopfLauscher(this);
